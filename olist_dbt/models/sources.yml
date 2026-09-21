@@ -1,0 +1,29 @@
+version: 2
+
+sources:
+  - name: olist_raw
+    database: latihan-data-505310
+    schema: olist_raw          # ← Dataset untuk data mentah (BUKAN olist_dataset)
+    tables:
+      - name: olist_orders_dataset
+        description: "Tabel orders"
+        columns:
+          - name: order_id
+            tests:
+              - unique
+              - not_null
+      
+      - name: olist_customers_dataset
+        description: "Tabel customers"
+      
+      - name: olist_order_items_dataset
+        description: "Tabel order items"
+      
+      - name: olist_products_dataset
+        description: "Tabel products"
+      
+      - name: olist_order_payments_dataset
+        description: "Tabel payments"
+      
+      - name: olist_order_reviews_dataset
+        description: "Tabel reviews"

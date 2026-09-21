@@ -1,0 +1,23 @@
+
+
+  create or replace view `latihan-data-505310`.`olist_dataset`.`stg_order_items`
+  OPTIONS()
+  as -- models/staging/stg_order_items.sql
+with source as (
+    select * from `latihan-data-505310`.`olist_raw`.`olist_order_items_dataset`
+),
+
+renamed as (
+    select
+        order_id,
+        order_item_id,
+        product_id,
+        seller_id,
+        cast(shipping_limit_date as timestamp) as shipping_limit_at,
+        cast(price as numeric) as price,
+        cast(freight_value as numeric) as freight_value
+    from source
+)
+
+select * from renamed;
+

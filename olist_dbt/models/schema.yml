@@ -1,0 +1,108 @@
+version: 2
+
+models:
+  - name: stg_orders
+    description: "Tabel orders yang sudah dibersihkan"
+    columns:
+      - name: order_id
+        description: "Primary key orders"
+        tests:
+          - unique
+          - not_null
+      
+      - name: customer_id
+        tests:
+          - not_null
+      
+      - name: order_status
+        tests:
+          - accepted_values:
+              values: ['delivered', 'shipped', 'invoiced', 'processing', 'canceled', 'unavailable', 'created', 'approved']
+      
+      - name: purchased_at
+        tests:
+          - not_null
+
+  - name: stg_customers
+    description: "Tabel customers yang sudah dibersihkan"
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+      
+      - name: customer_unique_id
+        tests:
+          - not_null
+
+  - name: stg_order_items
+    description: "Tabel order items"
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+      
+      - name: price
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+
+  - name: stg_products
+    description: "Tabel products"
+    columns:
+      - name: product_id
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_order_payments
+    description: "Tabel payments"
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+      
+      - name: payment_value
+        tests:
+          - not_null
+
+  - name: stg_order_reviews
+    description: "Tabel reviews"
+    columns:
+      - name: review_id
+        tests:
+          - not_null
+      
+      - name: score
+        tests:
+          - dbt_utils.accepted_range:
+              min_value: 1
+              max_value: 5
+
+  - name: fct_monthly_sales
+    description: "Metrik penjualan bulanan"
+    columns:
+      - name: sales_month
+        tests:
+          - unique
+          - not_null
+      
+      - name: total_revenue
+        tests:
+          - not_null
+
+  - name: dim_customers
+    description: "Dimensi customer dengan CLV"
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+
+  - name: fct_order_details
+    description: "Detail transaksi"
+    columns:
+      - name: order_id
+        tests:
+          - not_null

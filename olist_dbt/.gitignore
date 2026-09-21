@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+
+# dbt
+olist_dbt/target/
+olist_dbt/logs/
+olist_dbt/dbt_packages/
+
+# Environment
+.env
+*.env
+
+# Sensitive files
+gcp-key.json
+*.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
