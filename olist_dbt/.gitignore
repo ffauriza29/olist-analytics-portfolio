@@ -1,27 +1,12 @@
-# Python
-__pycache__/
-*.pyc
-*.pyo
-venv/
-.venv/
+# Logs - JANGAN COMMIT
+logs/
+*.log
 
-# dbt
-olist_dbt/target/
-olist_dbt/logs/
-olist_dbt/dbt_packages/
+# User-specific files
+.user.yml
 
-# Environment
-.env
-*.env
+# Target directory
+target/
 
-# Sensitive files
-gcp-key.json
-*.json
-
-# OS
-.DS_Store
-Thumbs.db
-
-# IDE
-.vscode/
-.idea/
+# dbt packages
+dbt_packages/
